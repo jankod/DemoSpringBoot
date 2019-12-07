@@ -3,17 +3,11 @@ package hr.demo.configuration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.Locale;
 
 
 @Slf4j
@@ -21,7 +15,7 @@ import java.util.Locale;
 @RequiredArgsConstructor
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
-    private final MatisonConfig config;
+    private final MyConfig config;
 
 
     @Override
