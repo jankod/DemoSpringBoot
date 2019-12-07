@@ -1,0 +1,7 @@
+.my-timeline:before {
+    background: none;
+}
+
+.my-timeline-item {
+    margin-left: 20px !important;
+}

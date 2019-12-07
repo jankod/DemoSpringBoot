@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="screen, print" th:href="@{/adminlte/plugins/fontawesome-free/css/all.min.css}"
+          href="adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/adminlte/css/adminlte.min.css" th:href="@{/adminlte/css/adminlte.min.css}">
+    <!--    <link rel="stylesheet" href="/adminlte/adminlte.css">-->
+    <link rel="stylesheet" href="/adminlte/plugins/sweetalert2/bootstrap4.min.css"
+          th:href="@{/adminlte/plugins/sweetalert2/bootstrap4.min.css}">
+    <link rel="stylesheet" href="/css/all.css" th:href="@{/css/all.css}">
+
+    <script th:src="@{/adminlte/plugins/jquery/jquery.min.js}" src="/adminlte/plugins/jquery/jquery.min.js"></script>
+    <script th:src="@{/adminlte/plugins/js/bootstrap.bundle.min.js}"
+            src="/adminlte/plugins/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/adminlte/js/adminlte.min.js}" src="/adminlte/js/adminlte.min.js"></script>
+    <script th:src="@{/adminlte/plugins/sweetalert2/sweetalert2.min.js}"
+            src="/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script th:src="@{/js/all.js}" src="/js/all.js"></script>
+</head>
+<body>
+
+
+Translation message <p th:text="#{app.title}"></p>
+
+
+form date
+
+<form th:object="${form}" th:action="@{/form-date}" method="post" role="form" id="formLTarget">
+
+    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+        <span class="h5">Errors</span>
+        <ul>
+            <li th:each="err : ${#fields.detailedErrors('*')}">
+                Filed <b>[[${err.fieldName}]]</b> [[${err.message}]]
+            </li>
+        </ul>
+    </div>
+
+
+    Date: <span th:text="*{date1}"></span> <br>
+    Date formated <span th:text="*{#temporals.format(date1)}"></span>
+    <br>
+    Locale data: <span th:text="${#locale.getLanguage() + ' '+ #locale.toString()}"></span>
+
+
+    <br>
+    <label class="form-label" for="startDate">Begin</label>
+    <div class="input-group date w-50" id="datetimepickerBegin" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input"
+               th:field="*{date1}" th:value="*{date1}"
+               th:classappend="${#fields.hasErrors('date1')} ? 'is-invalid' : ''"
+               data-target="#datetimepickerBegin" id="startDate"/>
+        <div class="input-group-append" data-target="#datetimepickerBegin"
+             data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+        </div>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('date1')}"
+             th:errors="*{date1}">Begin
+            Errors
+        </div>
+    </div>
+
+    <button type="submit">save</button>
+
+</form>
+
+<script src="/js/datetime/moment-with-locales.js"></script>
+<link rel="stylesheet" href="/js/datetime/tempusdominus-bootstrap-4.min.css"/>
+<script type="text/javascript" src="/js/datetime/tempusdominus-bootstrap-4.min.js"></script>
+
+<script th:inline="javascript">
+    var settings = {
+        locale: [[${#locale}]], //'hr',
+        format: [[${@matisonConfig.getDateTimeFormatJsMoment()}]] // 'DD.MM.YYYY HH:mm:ss'
+    };
+    //console.log("date time format: " + dateTimeFormat);
+
+    $(document).ready(function () {
+
+        var controls = {
+            leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
+            rightArrow: '<i class="fal fa-angle-right" style="font-size: 1.25rem"></i>'
+        }
+
+        $(function () {
+
+            $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                icons: {
+                    time: 'fas fa-clock',
+                    date: 'fas fa-calendar',
+                    up: 'fas fa-arrow-up',
+                    down: 'fas fa-arrow-down',
+                    previous: 'fas fa-chevron-left',
+                    next: 'fas fa-chevron-right',
+                    today: 'fas fa-calendar-check-o',
+                    clear: 'fas fa-trash',
+                    close: 'fas fa-times'
+                }
+            });
+
+
+            moment().locale(settings.locale);
+            moment().format(settings.format);
+
+            // https://tempusdominus.github.io/bootstrap-4/Usage/
+            $('#datetimepickerBegin').datetimepicker(settings);
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+
+    <title>Home page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="screen, print" th:href="@{/adminlte/plugins/fontawesome-free/css/all.min.css}"
+          href="adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/adminlte/css/adminlte.min.css" th:href="@{/adminlte/css/adminlte.min.css}">
+    <!--    <link rel="stylesheet" href="/adminlte/adminlte.css">-->
+    <link rel="stylesheet" href="/adminlte/plugins/sweetalert2/bootstrap4.min.css"
+          th:href="@{/adminlte/plugins/sweetalert2/bootstrap4.min.css}">
+</head>
+<body>
+
+<div th:if="${not #strings.isEmpty(msg)}" class="alert alert-success" role="alert">
+    <span th:text="${msg}"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div th:if="${not #strings.isEmpty(err)}" class="alert alert-danger alert-dismissible fade show"
+     role="alert">
+    <h5><i class="icon fas fa-exclamation-triangle"></i> Error</h5>
+    <span th:text="${err}"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+Ovo dela
+
+<a href="/form-date">foprm date</a>
+
+<br>
+Current Locale <span th:text="${#locale}"></span>
+
+</body>
+</html>
