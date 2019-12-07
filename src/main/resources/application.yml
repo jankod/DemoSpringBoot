@@ -1,22 +1,12 @@
+application:
+  date-time-format: dd.MM.yyyy HH:mm:ss     # russian also dd.mm.yyyy
+  date-time-format-js-moment: DD.MM.YYYY HH:mm:ss
+  locale: hr_HR
+
 server:
   port: 8085
-  error:
-    whitelabel:
-      enabled: false
-
-
-
-matison:
-  #  default-language:  # empty or ru, hr ....
-  #  default-locale-language-tag: hr_HR # Locale.languageTag en-GB
-  #  default-timezone-zone-id: Europe/Zagreb
-  date-format: dd.MM.yyyy
-  date-time-format: dd.MM.yy HH:mm:ss     # russian also dd.mm.yyyy
-  date-time-format-js-moment: DD.MM.YY HH:mm:ss
-  locale: hr_HR
 
 spring:
   mvc:
     locale: ${matison.locale}
-#    locale: ru_RU
 

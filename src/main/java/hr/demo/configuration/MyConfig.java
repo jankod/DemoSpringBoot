@@ -8,11 +8,10 @@ import java.util.Locale;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "matison", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class MyConfig {
 
     private String dateTimeFormat;
-    private String dateFormat;
     private String dateTimeFormatJsMoment;
     private String locale;
 
