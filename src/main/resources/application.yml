@@ -8,5 +8,5 @@ server:
 
 spring:
   mvc:
-    locale: ${matison.locale}
+    locale: ${application.locale}
 

@@ -21,13 +21,12 @@
     <script th:src="@{/js/all.js}" src="/js/all.js"></script>
 </head>
 <body>
+<header th:insert="_forms::header"></header>
 
 
 Translation message <p th:text="#{app.title}"></p>
 
-
-form date
-
+<br>
 <form th:object="${form}" th:action="@{/form-date}" method="post" role="form" id="formLTarget">
 
     <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
@@ -62,6 +61,9 @@ form date
             Errors
         </div>
     </div>
+
+
+    <div th:replace="_forms::text('name', 'Name je: ')"/>
 
     <button type="submit">save</button>
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+</head>
+<body>
+
+<div>
+
+    <div th:fragment="header">
+        <h1>Thymeleaf Fragments sample</h1>
+    </div>
+
+
+
+</div>
+<div class="form-group" th:fragment="text(name, userName)">
+    <div th:replace="::textDoc(name, userName, '')"/>
+</div>
+<div class="form-group" th:fragment="textDoc(name, userName, doc)">
+    <label class="form-label" th:for="${name}" th:text="${userName}">name</label>
+    <input class="form-control"
+           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+           th:field="*{name}" type="text">
+    <small class="form-text text-muted" th:if="${not #strings.isEmpty(doc)}" th:text="${doc}"></small>
+    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}"
+         th:errors="*{name}">name errors
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
